@@ -10,9 +10,25 @@
 */
 fn main () {
     let x = "Hello"; // immutable type, allocated in stack
-    let mut s = String::from("Hello"); // muttable type, allocated in heap
+    let mut s = String::from(x); // muttable type, allocated in heap
     s.push_str(", World!");
 
     println!("{}", s);
-    println!("{}", x);
+
+    let word = first_word(&s);
+    // let word = first_word(&s[..]); // this form are also valid, because a &String also works as slice.
+    println!("{}", word);
+}
+
+// This function returns a slice of the first word into the string,
+// if no empty space found, we assume that the entire string is the first word.
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+    return &s[..]
 }
