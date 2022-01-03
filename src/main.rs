@@ -1,3 +1,5 @@
+mod auxiliar;
+
 fn main() {
-    println!("Hello World!");
+    auxiliar::hello();
 }
