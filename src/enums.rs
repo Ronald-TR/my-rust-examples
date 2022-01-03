@@ -21,6 +21,14 @@ enum Message {
     Write(String), // includes a single String
     ChangeColor(i32, i32, i32), // includes three i32 values.
 }
+
+// enums also support methods, like structs does.
+impl Message {
+    fn call(&self) {
+        // method body would be defined here
+    }
+}
+
 // Enum with generics, like Option<i32>::Some(42)
 enum Option<T> {
     None,
